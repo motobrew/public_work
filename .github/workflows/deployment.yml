@@ -1,0 +1,22 @@
+name: Deploy
+
+run-name: ${{ github.actor }} is learning GitHub Actions
+
+concurrency: production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  secrets:
+    envPAT:
+      required: true
+
+jobs:
+  call-workflow-in-another-repo:
+    uses: motobrew/work/.github/workflows/reusable.yml@main
+    with:
+      config-path: .github/labeler.yml
+    secrets:
+      envPAT: ${{ secrets.envPAT }}
