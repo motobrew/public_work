@@ -1,0 +1,6 @@
+- name: Reverse Proxy (sapuri-staging)
+  hosts: all
+  gather_facts: false
+  become: true
+  roles:
+    - nginx
